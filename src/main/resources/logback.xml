@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+ <property name="LOG_DIR" value="/log/logmon/azure-poc" />
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <Pattern>
+          %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%class{0}.%method:%L - %msg%n
+        </Pattern>
+      </encoder>
+    </layout>
+  </appender>
+
+  <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/error.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%class{0}.%method:%L - %msg%n
+      </Pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_DIR}/archived/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+    </rollingPolicy>
+
+  </appender>
+
+  <appender name="FILE_WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/warn.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%class{0}.%method:%L - %msg%n
+      </Pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_DIR}/archived/warn.%d{yyyy-MM-dd}.log</fileNamePattern>
+    </rollingPolicy>
+
+  </appender>
+
+  <appender name="FILE_TRACE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/trace.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%class{0}.%method:%L - %msg%n
+      </Pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_DIR}/archived/trace.%d{yyyy-MM-dd}.log</fileNamePattern>
+    </rollingPolicy>
+
+  </appender>
+
+  <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/info.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%class{0}.%method:%L - %msg%n
+      </Pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_DIR}/archived/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+    </rollingPolicy>
+
+  </appender>
+
+  <appender name="FILE_DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/debug.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger.%class{0}.%method:%L - %msg%n
+      </Pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_DIR}/archived/${LOG_DIR}/debug.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+    </rollingPolicy>
+
+  </appender> 
+
+
+
+  Send logs to error log
+  <logger name="com.sams.membership" level="error" additivity="false">
+    <appender-ref ref="FILE_ERROR" />
+  </logger>
+
+  Send logs to warn log
+  <logger name="com.sams.membership.core.service" level="off" additivity="false">
+    <appender-ref ref="FILE_WARN" />
+  </logger>
+
+  Send logs to trace log
+  <logger name="com.sams.membership.core.logging" level="off" additivity="false">
+    <appender-ref ref="FILE_TRACE" />
+  </logger>
+
+  Send logs to info log
+  <logger name="com.sams.membership.core.cardholder" level="off" additivity="false">
+    <appender-ref ref="FILE_INFO" />
+  </logger>
+
+  <root level="ALL">
+    <appender-ref ref="STDOUT" />
+  </root>
+
+</configuration>

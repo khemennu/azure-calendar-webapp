@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "title": "",
+  "location": "",
+  "date": "",
+  "startTime": "",
+  "endTime": "",
+  "contact": "",
+  "description": "",
+  "image": "",
+  "admin": {
+    "status": "SUBMITTED",
+    "lastUpdatedTimestamp": "",
+    "reviewer": ""
+  }
+}
